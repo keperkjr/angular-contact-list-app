@@ -61,8 +61,11 @@ export class ContactTableComponent implements OnInit {
         this.editing = null;        
     }
 
-    onDeleteContact(id: number) {
-        this.deleteContactEmitter.emit(id);
+    onDeleteContact(contact: any) {
+        if (!confirm(`Are you sure you want to delete ${contact.name}?`)) {
+            return;
+        }
+        this.deleteContactEmitter.emit(contact.id);
     }    
 
 }

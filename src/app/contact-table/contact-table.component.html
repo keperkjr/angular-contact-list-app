@@ -7,20 +7,21 @@
         <table class="striped-table">
             <thead>
                 <tr>
+                    <th>#</th>
                     <th>Contact Name</th>
                     <th>Contact Email</th>
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let contact of contacts" [ngClass]="getRowClasses(contact.id)">
-                    <!-- <ng-container
-                        *ngIf="isEditing(contact.id); then editing; else notEditing">
-                    </ng-container>  -->
+                <tr *ngFor="let contact of contacts; index as index" [ngClass]="getRowClasses(contact.id)">
+                    <td>{{index + 1}}</td>
+
+                    <!-- Use a template to show editing mode rows vs not editing rows -->
                     <ng-container
                         *ngTemplateOutlet="isEditing(contact.id) ? editing: notEditing">
                     </ng-container>
-                    <ng-template #editing>
+                    <ng-template #editing>                        
                         <td> <input type="text" [(ngModel)]="contact.name" name="empName" autocomplete="off"/> </td>
                         <td> <input type="text" [(ngModel)]="contact.email" name="empEmail" autocomplete="off"/> </td>
                         <td>
@@ -33,7 +34,7 @@
                         <td>{{ contact.email }}</td>
                         <td>
                             <button (click)="onBeginEdit(contact)">Edit</button>
-                            <button (click)="onDeleteContact(contact.id)">Delete</button>
+                            <button (click)="onDeleteContact(contact)">Delete</button>
                         </td>
                     </ng-template>                                    
                 </tr>               
