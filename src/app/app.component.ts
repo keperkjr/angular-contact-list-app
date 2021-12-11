@@ -22,7 +22,14 @@ export class AppComponent implements OnInit {
  
     onAddContact(contact: any) {
         this.contactApiService.create(contact).subscribe({
-            next: (data) => this.contacts.push(data),
+            next: (data: any) => {
+                let maxId = this.contacts.length > 0 ? 
+                    this.contacts.reduce((a,b)=>a.id > b.id ? a : b).id
+                    : 0;
+                let nextId = maxId + 1;
+                data.id = Math.max(nextId, data.id);
+                this.contacts.push(data)
+            },
             error: (error) => console.log(error)
         });
     }   
