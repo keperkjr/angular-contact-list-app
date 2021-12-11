@@ -1,0 +1,43 @@
+<div id="contact-table">
+    <ng-template #noData>
+        <p class="empty-table">No contacts</p>
+    </ng-template>
+
+    <ng-container *ngIf="contacts.length > 0; else noData">
+        <table class="striped-table">
+            <thead>
+                <tr>
+                    <th>Contact Name</th>
+                    <th>Contact Email</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let contact of contacts" [ngClass]="getRowClasses(contact.id)">
+                    <!-- <ng-container
+                        *ngIf="isEditing(contact.id); then editing; else notEditing">
+                    </ng-container>  -->
+                    <ng-container
+                        *ngTemplateOutlet="isEditing(contact.id) ? editing: notEditing">
+                    </ng-container>
+                    <ng-template #editing>
+                        <td> <input type="text" [(ngModel)]="contact.name" name="empName" autocomplete="off"/> </td>
+                        <td> <input type="text" [(ngModel)]="contact.email" name="empEmail" autocomplete="off"/> </td>
+                        <td>
+                            <button (click)="onCancelEdit(contact)" class="muted-button" >Cancel</button> 
+                            <button (click)="onEditContact(contact)">Save</button>
+                        </td>
+                    </ng-template>                       
+                    <ng-template #notEditing>
+                        <td>{{ contact.name }}</td>
+                        <td>{{ contact.email }}</td>
+                        <td>
+                            <button (click)="onBeginEdit(contact)">Edit</button>
+                            <button (click)="onDeleteContact(contact.id)">Delete</button>
+                        </td>
+                    </ng-template>                                    
+                </tr>               
+            </tbody>
+          </table>
+    </ng-container>
+</div>

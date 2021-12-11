@@ -1,0 +1,12 @@
+button {
+    margin: 0 0.5rem 0 0;
+}
+input[type='text'] {
+    background-color: white;
+}
+.muted-button {
+    background: white;
+}
+.editing {
+    background-color: #e0ffff !important;
+}

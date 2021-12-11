@@ -1,0 +1,12 @@
+<div id="app" class="small-container">
+    <h1>Contacts</h1>
+
+    <app-contact-form 
+        (addContact)="onAddContact($event)"
+    ></app-contact-form>
+    <app-contact-table 
+        [contacts]="contacts"
+        (editContact)="onEditContact($event)"
+        (deleteContact)="onDeleteContact($event)"
+    ></app-contact-table>
+</div>
