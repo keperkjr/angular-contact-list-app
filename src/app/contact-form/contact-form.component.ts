@@ -54,10 +54,10 @@ export class ContactFormComponent implements OnInit {
     }    
 
     invalidName() {
-        return this.contact.name == '';
+        return !this.contact.name || this.contact.name.length == 0;
     }
 
     invalidEmail() {
-        return this.contact.email == '';
+        return !this.contact.email || this.contact.email.length == 0;
     }  
 }

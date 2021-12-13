@@ -8,7 +8,7 @@ import { Contact } from './models/contact';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-    title = 'angular-contact-app';
+    title = 'My Programming Notes - Angular Contact List';
 
     contacts: Array<Contact> = [];
     contactsLoaded = false;
