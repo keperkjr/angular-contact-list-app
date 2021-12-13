@@ -6,12 +6,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { ContactTableComponent } from './contact-table/contact-table.component';
 import { ContactFormComponent } from './contact-form/contact-form.component';
+import { LoadingComponent } from './loading/loading.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ContactTableComponent,
-    ContactFormComponent
+    ContactFormComponent,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,

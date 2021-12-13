@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ContactApiService } from './services/api.service';
+import { ContactsApiService } from './services/api.service';
 
 @Component({
   selector: 'app-root',
@@ -10,18 +10,22 @@ export class AppComponent implements OnInit {
     title = 'angular-contact-app';
 
     contacts: Array<any> = [];
+    contactsLoaded = false;
 
-    constructor(private contactApiService: ContactApiService) { }
+    constructor(private contactsApi: ContactsApiService) { }
    
     ngOnInit() {
-        this.contactApiService.getAll().subscribe({
-            next: (data) => this.contacts = data,
+        this.contactsApi.getAll().subscribe({
+            next: (data) => {
+                this.contacts = data;
+                this.contactsLoaded = true;
+            },
             error: (error) => console.log(error)
         });        
     }    
  
     onAddContact(contact: any) {
-        this.contactApiService.create(contact).subscribe({
+        this.contactsApi.create(contact).subscribe({
             next: (data: any) => {
                 let maxId = this.contacts.length > 0 ? 
                     this.contacts.reduce((a,b)=>a.id > b.id ? a : b).id
@@ -35,7 +39,7 @@ export class AppComponent implements OnInit {
     }   
     
     onDeleteContact(id: number) {
-        this.contactApiService.delete(id).subscribe({
+        this.contactsApi.delete(id).subscribe({
             next: () => {
                 let index = this.contacts.findIndex((x) => x.id == id);
                 this.contacts.splice(index, 1);  
@@ -46,7 +50,7 @@ export class AppComponent implements OnInit {
 
     onEditContact(data: any) {  
         let index = this.contacts.findIndex((x) => x.id == data.updatedContact.id);  
-        this.contactApiService.update(data.updatedContact).subscribe({
+        this.contactsApi.update(data.updatedContact).subscribe({
             next: (data: any) => this.contacts[index] = data,
             error: (error) => {
                 // Error will occur on server for non default entries.

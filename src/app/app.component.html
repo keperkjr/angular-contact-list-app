@@ -3,10 +3,21 @@
 
     <app-contact-form 
         (addContact)="onAddContact($event)"
-    ></app-contact-form>
-    <app-contact-table 
-        [contacts]="contacts"
-        (editContact)="onEditContact($event)"
-        (deleteContact)="onDeleteContact($event)"
-    ></app-contact-table>
+    ></app-contact-form>    
+
+    <ng-container
+        *ngTemplateOutlet="!contactsLoaded ? loading: contactsTable">
+    </ng-container>
+    <ng-template #loading>
+        <div style="text-align: center;">
+            <app-loading></app-loading>
+        </div>
+    </ng-template> 
+    <ng-template #contactsTable>
+        <app-contact-table 
+            [contacts]="contacts"
+            (editContact)="onEditContact($event)"
+            (deleteContact)="onDeleteContact($event)"
+        ></app-contact-table>
+    </ng-template>   
 </div>

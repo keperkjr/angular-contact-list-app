@@ -19,7 +19,7 @@ export class ApiService {
 @Injectable({
     providedIn: 'root'
 })
-export class ContactApiService extends ApiService {
+export class ContactsApiService extends ApiService {
     getAll() {
         const params = new HttpParams() 
             .set('page', '1') 
