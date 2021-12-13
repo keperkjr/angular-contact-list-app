@@ -3,6 +3,7 @@ button {
 }
 input[type='text'] {
     background-color: white;
+    width: 90%;
 }
 .muted-button {
     background: white;

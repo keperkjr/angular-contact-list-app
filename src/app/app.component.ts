@@ -18,10 +18,13 @@ export class AppComponent implements OnInit {
     ngOnInit() {
         this.contactsApi.getAll().subscribe({
             next: (data) => {
-                this.contacts = data;
-                this.contactsLoaded = true;               
+                this.contacts = data;         
             },
-            error: (error) => console.log(error)
+            error: (error) => {
+                console.log(error);
+                alert(`Error Occurred: Unable to fetch data from api. Please try again!`); 
+            },
+            complete: () => this.contactsLoaded = true
         });        
     }    
  
@@ -35,30 +38,42 @@ export class AppComponent implements OnInit {
                 data.id = Math.max(nextId, data.id);
                 this.contacts.push(data)
             },
-            error: (error) => console.log(error)
+            error: (error) => {
+                console.log(error);
+                alert(`Error Occurred: Unable to create contact on the api. Please try again!`); 
+            }
         });
     }   
     
-    onDeleteContact(id: number) {
-        this.contactsApi.delete(id).subscribe({
+    onDeleteContact(contact: Contact) {
+        this.contactsApi.delete(contact.id).subscribe({
             next: () => {
-                let index = this.contacts.findIndex((x) => x.id == id);
-                this.contacts.splice(index, 1);  
+                let index = this.contacts.findIndex((x) => x.id == contact.id);
+                this.contacts.splice(index, 1); 
+                setTimeout(() => {
+                    alert(`${contact.name} removed!`);
+                }, 50); 
             },
-            error: (error) => console.error(error)
+            error: (error) => {
+                console.log(error);
+                alert(`Error Occurred: Unable to delete contact on the api. Please try again!`); 
+            }
         });       
     }
 
-    onEditContact(data: any) {  
-        let index = this.contacts.findIndex((x) => x.id == data.updatedContact.id);  
-        this.contactsApi.update(data.updatedContact).subscribe({
-            next: (data: Contact) => this.contacts[index] = data,
+    onEditContact(info: any) {  
+        let index = this.contacts.findIndex((x) => x.id == info.updatedContact.id);  
+        this.contactsApi.update(info.updatedContact).subscribe({
+            next: (data: Contact) => {
+                this.contacts[index] = data;
+                alert(`${data.name} updated!`);
+            },
             error: (error) => {
                 // Error will occur on server for non default entries.
                 // Only show error message if they occur when editing default entries 
-                if (data.updatedContact.id < 11) {
+                if (info.updatedContact.id < 11) {
                     console.log(error);
-                    this.contacts[index] = data.originalContact;
+                    this.contacts[index] = info.originalContact;
                     alert(`Error Occurred: Unable to update entry on the server, reverting changes. Please try again!`); 
                 }                 
             }

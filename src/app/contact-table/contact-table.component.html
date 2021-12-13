@@ -23,18 +23,18 @@
                     </ng-container>
                     <ng-template #editing>                        
                         <td> <input type="text" [(ngModel)]="contact.name" name="empName" autocomplete="off"/> </td>
-                        <td> <input type="text" [(ngModel)]="contact.email" name="empPhone" autocomplete="off"/> </td>
+                        <td> <input type="text" [(ngModel)]="contact.email" name="empEmail" autocomplete="off"/> </td>
                         <td>
-                            <button (click)="onCancelEdit(contact)" class="muted-button" >Cancel</button> 
-                            <button (click)="onEditContact(contact)" class="btn-success">Save</button>
+                            <button (click)="onCancelEdit(contact)" class="muted-button" title="Cancel">❌</button> 
+                            <button (click)="onEditContact(contact)" class="btn-success" title="Save">💾</button>
                         </td>
                     </ng-template>                       
                     <ng-template #notEditing>
                         <td>{{ contact.name }}</td>
                         <td>{{ contact.email }}</td>
                         <td>
-                            <button (click)="onBeginEdit(contact)">Edit</button>
-                            <button (click)="onDeleteContact(contact)" class="btn-danger">Delete</button>
+                            <button (click)="onBeginEdit(contact)" title="Edit">📝</button>
+                            <button (click)="onDeleteContact(contact)" class="btn-danger" title="Delete">🗑️</button>
                         </td>
                     </ng-template>                                    
                 </tr>               
