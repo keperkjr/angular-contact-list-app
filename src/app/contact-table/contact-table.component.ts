@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Contact } from '../models/contact';
 
 @Component({
   selector: 'app-contact-table',
@@ -7,7 +8,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 })
 export class ContactTableComponent implements OnInit {
     @Input()
-    contacts!: Array<any>;    
+    contacts!: Array<Contact>;    
 
     @Output('deleteContact')
     deleteContactEmitter = new EventEmitter();
@@ -17,7 +18,7 @@ export class ContactTableComponent implements OnInit {
 
     editing: number | null = null;
 
-    cachedContact: any = null;
+    cachedContact = {} as Contact | null;
 
     constructor() { }
 

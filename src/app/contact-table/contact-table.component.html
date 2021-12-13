@@ -8,8 +8,8 @@
             <thead>
                 <tr>
                     <th>#</th>
-                    <th>Contact Name</th>
-                    <th>Contact Email</th>
+                    <th>Name</th>
+                    <th>Email</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -23,7 +23,7 @@
                     </ng-container>
                     <ng-template #editing>                        
                         <td> <input type="text" [(ngModel)]="contact.name" name="empName" autocomplete="off"/> </td>
-                        <td> <input type="text" [(ngModel)]="contact.email" name="empEmail" autocomplete="off"/> </td>
+                        <td> <input type="text" [(ngModel)]="contact.email" name="empPhone" autocomplete="off"/> </td>
                         <td>
                             <button (click)="onCancelEdit(contact)" class="muted-button" >Cancel</button> 
                             <button (click)="onEditContact(contact)" class="btn-success">Save</button>

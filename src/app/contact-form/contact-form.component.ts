@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit, Output, ElementRef, ViewChild } from '@angular/core';
+import { Contact } from '../models/contact';
 
 @Component({
   selector: 'app-contact-form',
@@ -7,10 +8,7 @@ import { Component, EventEmitter, OnInit, Output, ElementRef, ViewChild } from '
 })
 export class ContactFormComponent implements OnInit {
 
-    contact = {
-        name: '',
-        email: ''
-    };
+    contact = {} as Contact;
 
     submitting = false;
     error = false;
@@ -39,10 +37,8 @@ export class ContactFormComponent implements OnInit {
         this.addContactEmitter.emit(this.contact);
         this.contactNameRef.nativeElement.focus();
 
-        this.contact = {
-            name: '',
-            email: '',
-        };
+        this.contact = {} as Contact;
+
         this.error = false;
         this.success = true;
         this.submitting = false;   
@@ -63,6 +59,5 @@ export class ContactFormComponent implements OnInit {
 
     invalidEmail() {
         return this.contact.email == '';
-    }
-
+    }  
 }

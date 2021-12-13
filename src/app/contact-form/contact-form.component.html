@@ -1,12 +1,12 @@
 <div id="contact-form">
     <form>
-        <label for="contactName">Contact name</label>
+        <label for="contactName">Name</label>
         <input #contactName id="contactName" [(ngModel)]="contact.name" name="contactName" type="text" autocomplete="off"
             [ngClass]="{ 'has-error': submitting && invalidName() }"
             (focus)="clearStatus()"
             (keypress)="clearStatus()"        
-        />
-        <label for="contactEmail">Contact Email</label>
+        />     
+        <label for="contactEmail">Email</label>
         <input id="contactEmail" [(ngModel)]="contact.email" name="contactEmail" type="text" autocomplete="off" 
             [ngClass]="{ 'has-error': submitting && invalidEmail() }"
             (focus)="clearStatus()"        

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ContactsApiService } from './services/api.service';
+import { Contact } from './models/contact';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +10,7 @@ import { ContactsApiService } from './services/api.service';
 export class AppComponent implements OnInit {
     title = 'angular-contact-app';
 
-    contacts: Array<any> = [];
+    contacts: Array<Contact> = [];
     contactsLoaded = false;
 
     constructor(private contactsApi: ContactsApiService) { }
@@ -18,15 +19,15 @@ export class AppComponent implements OnInit {
         this.contactsApi.getAll().subscribe({
             next: (data) => {
                 this.contacts = data;
-                this.contactsLoaded = true;
+                this.contactsLoaded = true;               
             },
             error: (error) => console.log(error)
         });        
     }    
  
-    onAddContact(contact: any) {
+    onAddContact(contact: Contact) {
         this.contactsApi.create(contact).subscribe({
-            next: (data: any) => {
+            next: (data: Contact) => {
                 let maxId = this.contacts.length > 0 ? 
                     this.contacts.reduce((a,b)=>a.id > b.id ? a : b).id
                     : 0;
@@ -51,7 +52,7 @@ export class AppComponent implements OnInit {
     onEditContact(data: any) {  
         let index = this.contacts.findIndex((x) => x.id == data.updatedContact.id);  
         this.contactsApi.update(data.updatedContact).subscribe({
-            next: (data: any) => this.contacts[index] = data,
+            next: (data: Contact) => this.contacts[index] = data,
             error: (error) => {
                 // Error will occur on server for non default entries.
                 // Only show error message if they occur when editing default entries 

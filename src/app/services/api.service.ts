@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Contact } from '../models/contact';
 
 @Injectable({
   providedIn: 'root'
@@ -24,21 +25,21 @@ export class ContactsApiService extends ApiService {
         const params = new HttpParams() 
             .set('page', '1') 
             .set('pageSize', '10');        
-        return this.http.get<any[]>(`${this.baseUrl}/users`, {params});           
+        return this.http.get<Contact[]>(`${this.baseUrl}/users`, {params});           
     }
 
     get(id:number) {        
-        return this.http.get<any>(`${this.baseUrl}/users/${id}`);           
+        return this.http.get<Contact>(`${this.baseUrl}/users/${id}`);           
     }    
 
-    create(contact: any) {
+    create(contact: Contact) {
         const headers = this.getHeaders();
-        return this.http.post(`${this.baseUrl}/users`, contact, {headers});
+        return this.http.post<Contact>(`${this.baseUrl}/users`, contact, {headers});
     }
 
-    update(contact: any) {
+    update(contact: Contact) {
         const headers = this.getHeaders();        
-        return this.http.put(`${this.baseUrl}/users/${contact.id}`, contact, {headers});
+        return this.http.put<Contact>(`${this.baseUrl}/users/${contact.id}`, contact, {headers});
     } 
     
     delete(id: number) {
