@@ -1,3 +1,10 @@
+// ============================================================================
+//    Author: Kenneth Perkins
+//    Date:   Dec 13, 2021
+//    Taken From: http://programmingnotes.org/
+//    File:  Loading.component.ts
+//    Description: Loading typescript
+// ============================================================================
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,7 +13,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./loading.component.css']
 })
 export class LoadingComponent implements OnInit {
-    imgname = '../../assets/images/loading.gif';
+    imgPath = '../../assets/images/loading.gif';
 
     constructor() { }
 

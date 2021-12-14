@@ -1,3 +1,10 @@
+// ============================================================================
+//    Author: Kenneth Perkins
+//    Date:   Dec 13, 2021
+//    Taken From: http://programmingnotes.org/
+//    File:  api.service.ts
+//    Description: Service connecting to the api to retrieve contacts
+// ============================================================================
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Contact } from '../models/contact';
@@ -12,7 +19,7 @@ export class ApiService {
 
     getHeaders() {
         const headers = new HttpHeaders()
-        .set('X-Auth', 'userId'); 
+        .set('X-Auth', 'authKey'); 
         return headers;         
     }      
 }
@@ -28,7 +35,7 @@ export class ContactsApiService extends ApiService {
         return this.http.get<Contact[]>(`${this.baseUrl}/users`, {params});           
     }
 
-    get(id:number) {        
+    get(id: number) {
         return this.http.get<Contact>(`${this.baseUrl}/users/${id}`);           
     }    
 

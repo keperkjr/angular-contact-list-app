@@ -1,3 +1,10 @@
+// ============================================================================
+//    Author: Kenneth Perkins
+//    Date:   Dec 13, 2021
+//    Taken From: http://programmingnotes.org/
+//    File:  contact-form.component.ts
+//    Description: Contact form typescript
+// ============================================================================
 import { Component, EventEmitter, OnInit, Output, ElementRef, ViewChild } from '@angular/core';
 import { Contact } from '../models/contact';
 

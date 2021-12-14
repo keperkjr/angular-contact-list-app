@@ -1,3 +1,10 @@
+// ============================================================================
+//    Author: Kenneth Perkins
+//    Date:   Dec 13, 2021
+//    Taken From: http://programmingnotes.org/
+//    File:  contacts.ts
+//    Description: Data models representing a contact
+// ============================================================================
 export interface Geo {
     lat: string;
     lng: string;

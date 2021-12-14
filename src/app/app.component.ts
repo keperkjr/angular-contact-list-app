@@ -1,3 +1,10 @@
+// ============================================================================
+//    Author: Kenneth Perkins
+//    Date:   Dec 13, 2021
+//    Taken From: http://programmingnotes.org/
+//    File:  app.component.ts
+//    Description: App component typescript
+// ============================================================================
 import { Component, OnInit } from '@angular/core';
 import { ContactsApiService } from './services/api.service';
 import { Contact } from './models/contact';
@@ -24,7 +31,8 @@ export class AppComponent implements OnInit {
                 console.log(error);
                 alert(`Error Occurred: Unable to fetch data from api. Please try again!`); 
             },
-            complete: () => this.contactsLoaded = true
+        }).add(() => {
+            this.contactsLoaded = true           
         });        
     }    
  
@@ -62,21 +70,26 @@ export class AppComponent implements OnInit {
     }
 
     onEditContact(info: any) {  
-        let index = this.contacts.findIndex((x) => x.id == info.updatedContact.id);  
-        this.contactsApi.update(info.updatedContact).subscribe({
+        let index = this.contacts.findIndex((x) => x.id == info.updated.id);
+        let errorOccurred = false;
+        this.contactsApi.update(info.updated).subscribe({
             next: (data: Contact) => {
                 this.contacts[index] = data;
-                alert(`${data.name} updated!`);
             },
             error: (error) => {
                 // Error will occur on server for non default entries.
                 // Only show error message if they occur when editing default entries 
-                if (info.updatedContact.id < 11) {
+                if (info.updated.id < 11) {
+                    errorOccurred = true;
                     console.log(error);
-                    this.contacts[index] = info.originalContact;
+                    this.contacts[index] = info.original;
                     alert(`Error Occurred: Unable to update entry on the server, reverting changes. Please try again!`); 
-                }                 
+                }
             }
+        }).add(() => {
+            if (!errorOccurred) {
+                alert(`${info.updated.name} updated!`);
+            }            
         });          
     }    
 }
