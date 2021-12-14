@@ -19,8 +19,11 @@ export class AppComponent implements OnInit {
 
     contacts: Array<Contact> = [];
     contactsLoaded = false;
+    baseUrl: string;
 
-    constructor(private contactsApi: ContactsApiService) { }
+    constructor(private contactsApi: ContactsApiService) { 
+        this.baseUrl = location.href;
+    }
    
     ngOnInit() {
         this.contactsApi.getAll().subscribe({

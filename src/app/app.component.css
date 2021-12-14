@@ -14,7 +14,9 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
-
+  .title {
+      color: white;
+  }
   h1,
   h2,
   h3,
