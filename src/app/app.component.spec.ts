@@ -16,16 +16,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'angular-employee-app'`, () => {
+  it(`should have as title 'angular-contact-list-app'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('angular-employee-app');
+    expect(app.title).toEqual('angular-contact-list-app');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('angular-employee-app app is running!');
+    expect(compiled.querySelector('.content span')?.textContent).toContain('angular-contact-list-app app is running!');
   });
 });
