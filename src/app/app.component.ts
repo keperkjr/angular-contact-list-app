@@ -77,8 +77,8 @@ export class AppComponent implements OnInit {
                 this.contacts[index] = data;
             },
             error: (error) => {
-                // Error will occur on server for non default entries.
-                // Only show error message if they occur when editing default entries 
+                // Error will occur on server when updating non default api entries.
+                // Only show error message if they occur when updating default entries 
                 if (info.updated.id < 11) {
                     errorOccurred = true;
                     console.log(error);
