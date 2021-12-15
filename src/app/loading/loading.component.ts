@@ -13,7 +13,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./loading.component.css']
 })
 export class LoadingComponent implements OnInit {
-    imgPath = require('../../assets/images/loading.gif').default;
+    imgPath = require('../../assets/images/loading.gif');
 
     constructor() { }
 
